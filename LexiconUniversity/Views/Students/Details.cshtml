@@ -17,7 +17,10 @@
         <dd>            @Html.DisplayFor(model => model.LastName)        </dd>
 
         <dt>            @Html.DisplayNameFor(model => model.Enrollments)        </dt>
-        <dd>
+        <dd style="border: 1px dashed red;">            
+            @Html.Partial("_Enrollments", this.Model.Enrollments)
+        </dd>
+        @*<dd style="border: 1px dashed blue;">
             <table class="table">
                 <tr>
                     <th> Course </th>
@@ -25,17 +28,17 @@
                     <th> Enrollment Date </th>
                 </tr>
                 @foreach (var enrollment in Model.Enrollments)
-            {
-                <tr>
-                    <td>@Html.ActionLink(enrollment.Course.Title, "Details", "Courses", new { id = enrollment.CourseId }, null)</td>
-                    <td>@Html.DisplayFor(x => enrollment.Grade)</td>
-                    <td>@Html.DisplayFor(x => enrollment.EnrollmentDate)</td>
-                </tr>
-        }
-            </table>
+                {
+                    <tr>
+                        <td>@Html.ActionLink(enrollment.Course.Title, "Details", "Courses", new { id = enrollment.CourseId }, null)</td>
+                        <td>@Html.DisplayFor(x => enrollment.Grade)</td>
+                        <td>@Html.DisplayFor(x => enrollment.EnrollmentDate)</td>
+                    </tr>
+                }
+            </table>*@
         </dd>
         <dt></dt>
-        <dd>@Html.ActionLink("Add Enrollment", "Create", "Enrollments", new { studentId = Model.Id }, null) </dd> 
+        <dd>@Html.ActionLink("Add Enrollment", "Create", "Enrollments", new { studentId = Model.Id }, null) </dd>
 
     </dl>
 </div>

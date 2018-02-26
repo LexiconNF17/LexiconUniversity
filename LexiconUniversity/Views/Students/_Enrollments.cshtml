@@ -1,0 +1,22 @@
+﻿@model IEnumerable<LexiconUniversity.Models.Enrollment>
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.Course.Title)        </th>
+        <th>@Html.DisplayNameFor(model => model.Grade)        </th>
+        <th>@Html.DisplayNameFor(model => model.EnrollmentDate)        </th>
+        @*<th></th>*@
+    </tr>
+
+@foreach (var enrollment in Model) {
+    <tr>
+        <td>@Html.ActionLink(enrollment.Course.Title, "Details", "Courses", new { id = enrollment.CourseId }, null)            </td>
+        <td>@Html.DisplayFor(modelItem => enrollment.Grade)        </td>
+        <td>@Html.DisplayFor(modelItem => enrollment.EnrollmentDate)        </td>
+        @*<td>
+            @Html.ActionLink("Edit", "Edit", new { id=enrollment.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=enrollment.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=enrollment.Id })
+        </td>*@
+    </tr>
+}
+</table>

@@ -64,7 +64,7 @@ namespace LexiconUniversity.Controllers
             }
 
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Title", enrollment.CourseId);
-            ViewBag.StudentId = new SelectList(db.Students, "Id", "FirstName", enrollment.StudentId);
+            ViewBag.XXX = new SelectList(db.Students, "Id", "FirstName", enrollment.StudentId);
             return View(enrollment);
         }
 
