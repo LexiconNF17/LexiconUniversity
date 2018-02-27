@@ -225,6 +225,7 @@
     <Content Include="Views\Enrollments\Edit.cshtml" />
     <Content Include="Views\Enrollments\Index.cshtml" />
     <Content Include="Views\Students\_Enrollments.cshtml" />
+    <Content Include="Views\Enrollments\_CreateForStudent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

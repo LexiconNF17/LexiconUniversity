@@ -45,6 +45,16 @@ namespace LexiconUniversity.Controllers
             {
                 TempData["RedirectTo"] = Url.Action("Details", "Students", new { id = studentId });
             }
+
+            if (Request.IsAjaxRequest())
+            {
+                if (studentId != null)
+                {
+                    return PartialView("_CreateForStudent");
+                }
+                return PartialView();
+            }
+
             return View();
         }
 
@@ -59,12 +69,20 @@ namespace LexiconUniversity.Controllers
             {
                 db.Enrollments.Add(enrollment);
                 db.SaveChanges();
+                if (Request.IsAjaxRequest())
+                {
+                    var enrollments = db.Enrollments.Where(e => e.StudentId == enrollment.StudentId).ToList();                    
+                    return PartialView("~/Views/Students/_Enrollments.cshtml", enrollments);
+                }
+
                 if (TempData["RedirectTo"] != null) return Redirect((string)TempData["RedirectTo"]);
                 return RedirectToAction("Index");
             }
 
             ViewBag.CourseId = new SelectList(db.Courses, "CourseId", "Title", enrollment.CourseId);
             ViewBag.XXX = new SelectList(db.Students, "Id", "FirstName", enrollment.StudentId);
+
+
             return View(enrollment);
         }
 

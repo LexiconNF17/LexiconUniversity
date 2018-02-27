@@ -17,32 +17,26 @@
         <dd>            @Html.DisplayFor(model => model.LastName)        </dd>
 
         <dt>            @Html.DisplayNameFor(model => model.Enrollments)        </dt>
-        <dd style="border: 1px dashed red;">            
-            @Html.Partial("_Enrollments", this.Model.Enrollments)
-        </dd>
-        @*<dd style="border: 1px dashed blue;">
-            <table class="table">
-                <tr>
-                    <th> Course </th>
-                    <th> Grade </th>
-                    <th> Enrollment Date </th>
-                </tr>
-                @foreach (var enrollment in Model.Enrollments)
-                {
-                    <tr>
-                        <td>@Html.ActionLink(enrollment.Course.Title, "Details", "Courses", new { id = enrollment.CourseId }, null)</td>
-                        <td>@Html.DisplayFor(x => enrollment.Grade)</td>
-                        <td>@Html.DisplayFor(x => enrollment.EnrollmentDate)</td>
-                    </tr>
-                }
-            </table>*@
-        </dd>
-        <dt></dt>
-        <dd>@Html.ActionLink("Add Enrollment", "Create", "Enrollments", new { studentId = Model.Id }, null) </dd>
+        <dd id="list-enrollments" style="border: 1px dashed red;">            
+            @Html.Partial("_Enrollments", Model.Enrollments)
+        </dd>     
 
+        <dt></dt>        
+        <dd  id="create-enrollment">@Ajax.ActionLink("Add Enrollment", "Create", "Enrollments", 
+           new { studentId = Model.Id }, 
+           new AjaxOptions { UpdateTargetId = "create-enrollment"}, 
+           null)</dd>
     </dl>
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     @Html.ActionLink("Back to List", "Index")
 </p>
+<script>
+    function replaceCreateLink() {
+        $('#create-enrollment').html('@Ajax.ActionLink("Add Enrollment", "Create", "Enrollments",
+           new { studentId = Model.Id },
+           new AjaxOptions { UpdateTargetId = "create-enrollment" },
+           null)');
+    }
+</script>
